@@ -5,23 +5,28 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    public static Connection getConnection() {
+    ```
+public static Connection getConnection() {
 
-        Connection con = null;
+    Connection con = null;
 
-        try {
+    try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        // Load MySQL Driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/tictactoe",
-                    "root",
-                    "srija@9970");
+        // Connect to Online MySQL Database
+        con = DriverManager.getConnection(
+            "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12819653",
+            "sql12819653",
+            "pQFBXYPvnf"
+        );
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return con;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+
+    return con;
+}
+
 }
