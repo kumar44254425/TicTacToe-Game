@@ -1,1 +1,32 @@
-package com.tictactoe.servlet;import java.io.IOException;import jakarta.servlet.ServletException;import jakarta.servlet.http.*;import com.tictactoe.dao.GameDAO;import com.tictactoe.model.Game;public class SaveGameServlet extends HttpServlet {    protected void doPost(HttpServletRequest req,HttpServletResponse res)    throws ServletException,IOException{        HttpSession session = req.getSession();        Game g = new Game();        g.setPlayer1((String)session.getAttribute("player1"));        g.setPlayer2((String)session.getAttribute("player2"));        g.setWinner(req.getParameter("winner"));        GameDAO dao = new GameDAO();        dao.saveGame(g);        res.sendRedirect("history");    }}
+package com.tictactoe.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+
+import com.tictactoe.dao.GameDAO;
+import com.tictactoe.model.Game;
+
+public class SaveGameServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+
+        Game g = new Game();
+
+        g.setPlayer1((String) session.getAttribute("player1"));
+        g.setPlayer2((String) session.getAttribute("player2"));
+
+        g.setWinner(req.getParameter("winner"));
+
+        GameDAO dao = new GameDAO();
+
+        dao.saveGame(g);
+
+        res.sendRedirect("history");
+
+    }
+}

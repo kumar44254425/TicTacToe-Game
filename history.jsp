@@ -1,1 +1,62 @@
-<%@ page import="java.util.*,com.tictactoe.model.Game" %><html><head><title>Game History</title><link rel="stylesheet" href="css/history.css"></head><body><h2>Game History</h2><table border="1"><tr><th>Player1</th><th>Player2</th><th>Winner</th></tr><%List<Game> games = (List<Game>) request.getAttribute("games");if(games != null && games.size() > 0){for(Game g : games){%><tr><td><%=g.getPlayer1()%></td><td><%=g.getPlayer2()%></td><td><%=g.getWinner()%></td></tr><%}}else{%><tr><td colspan="3">No Game History Found</td></tr><%}%></table><br><a href="index.jsp">Back</a></body></html>
+<%@ page import="java.util.*,com.tictactoe.model.Game" %>
+
+<html>
+
+<head>
+
+<title>Game History</title>
+
+<link rel="stylesheet" href="css/history.css">
+
+</head>
+
+<body>
+
+<h2>Game History</h2>
+
+<table border="1">
+
+<tr>
+<th>Player1</th>
+<th>Player2</th>
+<th>Winner</th>
+</tr>
+
+<%
+
+List<Game> games = (List<Game>) request.getAttribute("games");
+
+if(games != null && games.size() > 0){
+
+for(Game g : games){
+
+%>
+
+<tr>
+<td><%=g.getPlayer1()%></td>
+<td><%=g.getPlayer2()%></td>
+<td><%=g.getWinner()%></td>
+</tr>
+
+<%
+}
+}else{
+%>
+
+<tr>
+<td colspan="3">No Game History Found</td>
+</tr>
+
+<%
+}
+%>
+
+</table>
+
+<br>
+
+<a href="index.jsp" class="back-btn">Back</a>
+
+</body>
+
+</html>

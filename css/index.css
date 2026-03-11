@@ -1,1 +1,66 @@
-       body{    font-family:Arial, Helvetica, sans-serif;    background:linear-gradient(135deg,#141e30,#243b55);    height:100vh;    display:flex;    justify-content:center;    align-items:center;    color:white;}.container{    background:rgba(255,255,255,0.1);    padding:40px;    border-radius:10px;    text-align:center;    box-shadow:0 0 20px rgba(0,0,0,0.5);}h1{    margin-bottom:20px;}input{    width:200px;    padding:10px;    margin:10px;    border-radius:5px;    border:none;}button{    padding:10px 20px;    background:#3b82f6;    border:none;    border-radius:5px;    color:white;    cursor:pointer;}button:hover{    background:#2563eb;}
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#141e30,#243b55);
+    margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Title */
+.game-title{
+    color:white;
+    font-size:48px;
+    margin-bottom:30px;
+    letter-spacing:3px;
+}
+
+/* Form container */
+.container{
+    width:350px;
+    background:rgba(255,255,255,0.1);
+    padding:40px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+/* Input boxes */
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:6px;
+}
+
+/* Start Game button */
+.start-btn{
+    padding:12px 25px;
+    background:#3b82f6;
+    border:none;
+    border-radius:6px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* History button */
+.history-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:12px 25px;
+    background:#3b82f6;
+    border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
+
+/* Hover effects */
+.start-btn:hover,
+.history-btn:hover{
+    background:#2563eb;
+}

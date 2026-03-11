@@ -4,6 +4,11 @@
          https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+    <!-- Welcome page -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>GameServlet</servlet-name>
         <servlet-class>com.tictactoe.servlet.GameServlet</servlet-class>

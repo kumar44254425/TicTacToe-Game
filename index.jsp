@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Tic Tac Toe</title>
+
 <link rel="stylesheet" href="css/index.css">
+
 </head>
 
 <body>
 
-<h1>Tic Tac Toe</h1>
+<h1 class="game-title">Tic Tac Toe</h1>
+
+<div class="container">
 
 <form action="game" method="post">
 
@@ -15,13 +21,16 @@
 
 <input type="text" name="player2" placeholder="Player 2 Name" required>
 
-<button type="submit">Start Game</button>
+<button type="submit" class="start-btn">Start Game</button>
 
 </form>
 
 <br>
 
-<a href="history">View Game History</a>
+<a href="history" class="history-btn">View Game History</a>
+
+</div>
 
 </body>
+
 </html>

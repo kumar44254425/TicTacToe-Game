@@ -1,1 +1,27 @@
-package com.tictactoe.util;import java.sql.Connection;import java.sql.DriverManager;public class DBConnection {    public static Connection getConnection() {        Connection con = null;        try {            Class.forName("com.mysql.cj.jdbc.Driver");            con = DriverManager.getConnection(                    "jdbc:mysql://localhost:3306/tictactoe",                    "root",                    "sridhar123SS");        } catch (Exception e) {            e.printStackTrace();        }        return con;    }}
+package com.tictactoe.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConnection {
+
+    public static Connection getConnection() {
+
+        Connection con = null;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/tictactoe",
+                    "root",
+                    "srija@9970");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return con;
+    }
+}
