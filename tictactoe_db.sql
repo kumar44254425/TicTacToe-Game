@@ -1,0 +1,1 @@
+CREATE DATABASE tictactoe;USE tictactoe;CREATE TABLE games (    id INT AUTO_INCREMENT PRIMARY KEY,    player1 VARCHAR(50),    player2 VARCHAR(50),    winner VARCHAR(50),    played_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
