@@ -5,20 +5,20 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
+    private static final String URL = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12819653";
+
+    private static final String USER = "sql12819653";
+    private static final String PASSWORD = "pQFBXYPvnf";
+
     public static Connection getConnection() {
 
         Connection con = null;
 
         try {
 
-            // Load MySQL Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Connect to Online MySQL Database
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12819653",
-                    "sql12819653",
-                    "pQFBXYPvnf");
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -26,5 +26,4 @@ public class DBConnection {
 
         return con;
     }
-
 }
