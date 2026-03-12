@@ -1,28 +1,27 @@
 package com.tictactoe.util;
 
-import java.net.PasswordAuthentication;
 import java.util.Properties;
+
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.mail.PasswordAuthentication;
 
 public class EmailUtil {
 
     public static void sendOTP(String toEmail, String otp) {
 
         final String fromEmail = "kgosukula@gmail.com";
-        final String password = "hima wrpm smcg gdnc"; // put new gmail app password
+        final String password = "hima wrpm smcg gdnc"; // Gmail App Password
 
         Properties props = new Properties();
 
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "465");
-
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.ssl.enable", "true");
+
         Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
+                new Authenticator() {
 
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(fromEmail, password);
@@ -56,6 +55,5 @@ public class EmailUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
