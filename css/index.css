@@ -1,66 +1,139 @@
+/* PAGE LAYOUT */
+
 body{
-    font-family: Arial;
-    background: linear-gradient(135deg,#141e30,#243b55);
-    margin:0;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+
+min-height:100vh;
+
 }
 
-/* Title */
+/* TITLE */
+
 .game-title{
-    color:white;
-    font-size:48px;
-    margin-bottom:30px;
-    letter-spacing:3px;
+
+text-align:center;
+
+font-size:55px;
+
+margin-top:40px;
+
+margin-bottom:40px;
+
+letter-spacing:4px;
+
 }
 
-/* Form container */
-.container{
-    width:350px;
-    background:rgba(255,255,255,0.1);
-    padding:40px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
+/* CENTER AREA */
+
+.game-wrapper{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:60px;
+
+flex-wrap:wrap;
+
 }
 
-/* Input boxes */
-input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:6px;
+/* GAME BOX */
+
+.game-box{
+
+background:rgba(255,255,255,0.08);
+
+padding:40px;
+
+border-radius:15px;
+
+width:320px;
+
+text-align:center;
+
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+
+backdrop-filter:blur(12px);
+
+transition:0.3s;
+
 }
 
-/* Start Game button */
-.start-btn{
-    padding:12px 25px;
-    background:#3b82f6;
-    border:none;
-    border-radius:6px;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
+.game-box:hover{
+
+transform:translateY(-5px);
+
 }
 
-/* History button */
-.history-btn{
-    display:inline-block;
-    margin-top:10px;
-    padding:12px 25px;
-    background:#3b82f6;
-    border-radius:6px;
-    color:white;
-    text-decoration:none;
-    font-size:16px;
+/* BOX TITLE */
+
+.game-box h2{
+
+margin-bottom:25px;
+
 }
 
-/* Hover effects */
-.start-btn:hover,
-.history-btn:hover{
-    background:#2563eb;
+/* BUTTONS */
+
+.room-btn{
+
+display:inline-block;
+
+padding:12px 25px;
+
+background:linear-gradient(45deg,#36d1dc,#5b86e5);
+
+border-radius:8px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.join-btn{
+
+display:inline-block;
+
+padding:12px 25px;
+
+background:linear-gradient(45deg,#ff416c,#ff4b2b);
+
+border-radius:8px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+/* HOVER */
+
+.room-btn:hover,
+.join-btn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 15px rgba(255,255,255,0.5);
+
+}
+
+/* BOTTOM BUTTONS */
+
+.bottom-buttons{
+
+text-align:center;
+
+margin-top:80px;
+
 }

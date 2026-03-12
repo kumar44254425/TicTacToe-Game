@@ -1,0 +1,42 @@
+.history-container{
+display:flex;
+gap:40px;
+align-items:flex-start;
+}
+
+table{
+border-collapse:collapse;
+background:rgba(255,255,255,0.08);
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+th{
+background:linear-gradient(45deg,#36d1dc,#5b86e5);
+padding:12px;
+color:white;
+}
+
+td{
+padding:10px 20px;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+tr:hover{
+background:rgba(255,255,255,0.1);
+}
+
+.leaderboard{
+margin-left:30px;
+}
+
+.back-btn{
+display:inline-block;
+padding:10px 20px;
+background:#00c853;
+border-radius:8px;
+margin-top:20px;
+color:white;
+}

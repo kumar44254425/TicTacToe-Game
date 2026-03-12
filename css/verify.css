@@ -1,0 +1,6 @@
+@import url('main.css');
+
+.verify-btn{
+background:linear-gradient(45deg,#f7971e,#ffd200);
+color:black;
+}

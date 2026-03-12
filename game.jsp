@@ -1,19 +1,29 @@
 <%@ page session="true" %>
 
-<!DOCTYPE html>
 <html>
 
 <head>
 
-<title>Game</title>
+<title>Tic Tac Toe</title>
 
+<link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/game.css">
 
 </head>
 
 <body>
 
-<h2>${sessionScope.player1} VS ${sessionScope.player2}</h2>
+<div class="game-area">
+
+<h2 class="players">
+
+<%=session.getAttribute("player1")%>
+
+VS
+
+<%=session.getAttribute("player2")%>
+
+</h2>
 
 <div id="board">
 
@@ -31,18 +41,21 @@
 
 </div>
 
-<br>
-
 <form action="saveGame" method="post">
 
-<input type="hidden" name="winner" id="winner">
+<input type="hidden" name="player1" value="<%=session.getAttribute("player1")%>">
+<input type="hidden" name="player2" value="<%=session.getAttribute("player2")%>">
+<input type="hidden" id="winner" name="winner">
 
-<button type="submit">Save Result</button>
+<br>
+
+<button class="save-btn">Save Result</button>
 
 </form>
 
-<script src="js/script.js"></script>
+</div>
+
+<script src="js/game.js"></script>
 
 </body>
-
 </html>
