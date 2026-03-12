@@ -1,7 +1,6 @@
 package com.tictactoe.util;
 
 import java.util.Properties;
-
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.PasswordAuthentication;
@@ -11,7 +10,7 @@ public class EmailUtil {
     public static void sendOTP(String toEmail, String otp) {
 
         final String fromEmail = "kgosukula@gmail.com";
-        final String password = "hima wrpm smcg gdnc"; // Gmail App Password
+        final String password = "xapa xnzj qsms igte";
 
         Properties props = new Properties();
 
@@ -22,19 +21,14 @@ public class EmailUtil {
 
         Session session = Session.getInstance(props,
                 new Authenticator() {
-
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(fromEmail, password);
                     }
-
                 });
 
         session.setDebug(true);
 
         try {
-
-            System.out.println("Sending OTP to: " + toEmail);
-            System.out.println("OTP = " + otp);
 
             Message message = new MimeMessage(session);
 
