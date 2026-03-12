@@ -12,21 +12,21 @@ public class JoinRoomServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String player = req.getParameter("player");
-        String room = req.getParameter("room");
+        String roomId = req.getParameter("room");
 
         try {
 
             Connection con = DBConnection.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "update rooms set player2=? where room_id=?");
+                    "UPDATE rooms SET player2=? WHERE room_id=?");
 
             ps.setString(1, player);
-            ps.setString(2, room);
+            ps.setString(2, roomId);
 
             ps.executeUpdate();
 
-            res.sendRedirect("room.jsp?room=" + room);
+            res.sendRedirect("game.jsp?room=" + roomId);
 
         } catch (Exception e) {
             e.printStackTrace();

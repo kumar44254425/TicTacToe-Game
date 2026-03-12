@@ -8,10 +8,11 @@ String room = request.getParameter("room");
 <html>
 
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Room</title>
 
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/roomgame.css">
 
 </head>

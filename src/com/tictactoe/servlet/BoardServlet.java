@@ -13,12 +13,14 @@ public class BoardServlet extends HttpServlet {
 
         String room = req.getParameter("room");
 
+        res.setContentType("application/json");
+
         try {
 
             Connection con = DBConnection.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "select board from rooms where room_id=?");
+                    "SELECT board, turn FROM rooms WHERE room_id=?");
 
             ps.setString(1, room);
 
@@ -27,17 +29,14 @@ public class BoardServlet extends HttpServlet {
             if (rs.next()) {
 
                 String board = rs.getString("board");
+                String turn = rs.getString("turn");
 
-                res.setContentType("application/json");
-
-                res.getWriter().print(
-                        "{\"board\":[\"" + board.replace(",", "\",\"") + "\"]}");
-
+                res.getWriter().write(
+                        "{\"board\":\"" + board + "\",\"turn\":\"" + turn + "\"}");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -1,0 +1,84 @@
+
+/* ================================= */
+/* MEDIA QUERIES (ALL IN ONE PLACE) */
+/* ================================= */
+
+
+/* TABLETS */
+
+@media (max-width:1024px){
+
+.players{
+font-size:24px;
+}
+
+#board{
+max-width:360px;
+gap:15px;
+}
+
+#board button{
+font-size:36px;
+}
+
+.save-btn{
+width:180px;
+font-size:16px;
+}
+
+}
+
+
+/* MOBILE PHONES */
+
+@media (max-width:768px){
+
+.game-area{
+padding:15px;
+}
+
+.players{
+font-size:22px;
+}
+
+#board{
+max-width:320px;
+gap:12px;
+}
+
+#board button{
+font-size:32px;
+}
+
+.save-btn{
+width:160px;
+}
+
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width:480px){
+
+.players{
+font-size:18px;
+margin-bottom:20px;
+}
+
+#board{
+max-width:260px;
+gap:10px;
+}
+
+#board button{
+font-size:26px;
+border-radius:14px;
+}
+
+.save-btn{
+width:140px;
+font-size:14px;
+}
+
+}

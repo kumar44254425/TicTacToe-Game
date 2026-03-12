@@ -8,18 +8,18 @@ import com.tictactoe.util.DBConnection;
 
 public class MoveServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
         String room = req.getParameter("room");
-        int pos = Integer.parseInt(req.getParameter("pos"));
+        int index = Integer.parseInt(req.getParameter("index"));
 
         try {
 
             Connection con = DBConnection.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "select board,turn from rooms where room_id=?");
+                    "SELECT * FROM rooms WHERE room_id=?");
 
             ps.setString(1, room);
 
@@ -30,32 +30,33 @@ public class MoveServlet extends HttpServlet {
                 String board = rs.getString("board");
                 String turn = rs.getString("turn");
 
-                String arr[] = board.split(",");
+                String[] cells = board.split(",");
 
-                if (arr[pos].equals("")) {
+                if (cells[index].equals("-")) {
 
-                    arr[pos] = turn;
+                    cells[index] = turn;
 
-                    turn = turn.equals("X") ? "O" : "X";
-
-                    String newBoard = String.join(",", arr);
-
-                    PreparedStatement update = con.prepareStatement(
-                            "update rooms set board=?,turn=? where room_id=?");
-
-                    update.setString(1, newBoard);
-                    update.setString(2, turn);
-                    update.setString(3, room);
-
-                    update.executeUpdate();
+                    if (turn.equals("X"))
+                        turn = "O";
+                    else
+                        turn = "X";
 
                 }
 
+                String newBoard = String.join(",", cells);
+
+                PreparedStatement update = con.prepareStatement(
+                        "UPDATE rooms SET board=?, turn=? WHERE room_id=?");
+
+                update.setString(1, newBoard);
+                update.setString(2, turn);
+                update.setString(3, room);
+
+                update.executeUpdate();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

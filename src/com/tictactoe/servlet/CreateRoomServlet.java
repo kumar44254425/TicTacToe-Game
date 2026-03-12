@@ -20,14 +20,16 @@ public class CreateRoomServlet extends HttpServlet {
 
             Connection con = DBConnection.getConnection();
 
+            String board = "-,-,-,-,-,-,-,-,-";
+
             PreparedStatement ps = con.prepareStatement(
-                    "insert into rooms values(?,?,?,?,?)");
+                    "INSERT INTO rooms(room_id, player1, player2, board, turn) VALUES(?,?,?,?,?)");
 
             ps.setString(1, roomId);
             ps.setString(2, player);
             ps.setString(3, null);
-            ps.setString(4, ",,,,,,,,");
-            ps.setString(5, "X");
+            ps.setString(4, board);
+            ps.setString(5, "X"); // player1 starts
 
             ps.executeUpdate();
 
