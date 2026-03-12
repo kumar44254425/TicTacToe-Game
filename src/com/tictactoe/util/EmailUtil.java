@@ -9,7 +9,7 @@ public class EmailUtil {
     public static void sendOTP(String toEmail, String otp) {
 
         final String fromEmail = "kgosukula@gmail.com";
-        final String password = "aikd dskd ufhy rlmg"; // put new gmail app password
+        final String password = "aikddskdufhyrlmg"; // put new gmail app password
 
         Properties props = new Properties();
 
