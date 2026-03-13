@@ -6,7 +6,7 @@ let currentTurn = "";
 let socket = new WebSocket(
  (location.protocol === "https:" ? "wss://" : "ws://") +
  location.host +
- "/game"
+ "/TicTacToe/game"
 );
 
 /* WHEN CONNECTION OPENS */
