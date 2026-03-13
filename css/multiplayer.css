@@ -1,0 +1,116 @@
+/* PAGE BACKGROUND */
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#1f2a36;
+color:white;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+/* GAME AREA */
+
+.game-area{
+margin-top:40px;
+}
+
+/* PLAYER NAMES */
+
+.players{
+font-size:28px;
+margin-bottom:10px;
+}
+
+/* TURN TEXT */
+
+#turn{
+margin-bottom:20px;
+font-size:20px;
+color:#f1c40f;
+}
+
+/* GAME BOARD */
+
+#board{
+display:grid;
+grid-template-columns:repeat(3,120px);
+gap:15px;
+justify-content:center;
+margin:auto;
+}
+
+/* GAME BOXES */
+
+#board button{
+width:120px;
+height:120px;
+font-size:40px;
+border:none;
+border-radius:10px;
+background:#34495e;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* HOVER EFFECT */
+
+#board button:hover{
+background:#3f5872;
+transform:scale(1.05);
+}
+
+/* WINNER TEXT */
+
+#winner{
+margin-top:20px;
+font-size:26px;
+color:#2ecc71;
+}
+
+/* TABLET */
+
+@media(max-width:768px){
+
+#board{
+grid-template-columns:repeat(3,90px);
+gap:12px;
+}
+
+#board button{
+width:90px;
+height:90px;
+font-size:32px;
+}
+
+.players{
+font-size:22px;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+#board{
+grid-template-columns:repeat(3,70px);
+gap:10px;
+}
+
+#board button{
+width:70px;
+height:70px;
+font-size:26px;
+}
+
+.players{
+font-size:18px;
+}
+
+#turn{
+font-size:16px;
+}
+
+}

@@ -12,6 +12,7 @@ public class MoveServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String room = req.getParameter("room");
+        String player = req.getParameter("player");
         int index = Integer.parseInt(req.getParameter("index"));
 
         try {
@@ -19,7 +20,7 @@ public class MoveServlet extends HttpServlet {
             Connection con = DBConnection.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM rooms WHERE room_id=?");
+                    "SELECT player1,player2,board,turn FROM rooms WHERE room_id=?");
 
             ps.setString(1, room);
 
@@ -27,36 +28,61 @@ public class MoveServlet extends HttpServlet {
 
             if (rs.next()) {
 
+                String player1 = rs.getString("player1");
+                String player2 = rs.getString("player2");
                 String board = rs.getString("board");
                 String turn = rs.getString("turn");
 
+                /* determine symbol */
+
+                String symbol;
+
+                if (player.equals(player1)) {
+                    symbol = "X";
+                } else if (player.equals(player2)) {
+                    symbol = "O";
+                } else {
+                    return; // player not part of room
+                }
+
+                /* check turn */
+
+                if (!turn.equals(symbol)) {
+                    return;
+                }
+
                 String[] cells = board.split(",");
 
-                if (cells[index].equals("-")) {
+                /* check cell empty */
 
-                    cells[index] = turn;
-
-                    if (turn.equals("X"))
-                        turn = "O";
-                    else
-                        turn = "X";
-
+                if (!cells[index].equals("-")) {
+                    return;
                 }
+
+                /* make move */
+
+                cells[index] = symbol;
+
+                /* switch turn */
+
+                turn = turn.equals("X") ? "O" : "X";
 
                 String newBoard = String.join(",", cells);
 
                 PreparedStatement update = con.prepareStatement(
-                        "UPDATE rooms SET board=?, turn=? WHERE room_id=?");
+                        "UPDATE rooms SET board=?,turn=? WHERE room_id=?");
 
                 update.setString(1, newBoard);
                 update.setString(2, turn);
                 update.setString(3, room);
 
                 update.executeUpdate();
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }

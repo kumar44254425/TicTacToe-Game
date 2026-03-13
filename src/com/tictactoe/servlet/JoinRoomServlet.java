@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
+
 import com.tictactoe.util.DBConnection;
 
 public class JoinRoomServlet extends HttpServlet {
@@ -13,6 +14,11 @@ public class JoinRoomServlet extends HttpServlet {
 
         String player = req.getParameter("player");
         String roomId = req.getParameter("room");
+
+        HttpSession session = req.getSession();
+
+        session.setAttribute("username", player);
+        session.setAttribute("player2", player);
 
         try {
 
@@ -26,7 +32,7 @@ public class JoinRoomServlet extends HttpServlet {
 
             ps.executeUpdate();
 
-            res.sendRedirect("game.jsp?room=" + roomId);
+            res.sendRedirect("multiplayer.jsp?room=" + roomId);
 
         } catch (Exception e) {
             e.printStackTrace();

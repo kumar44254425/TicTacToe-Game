@@ -8,7 +8,9 @@ String room = request.getParameter("room");
 <html>
 
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Game Room</title>
 
 <link rel="stylesheet" href="css/main.css">
@@ -19,25 +21,17 @@ String room = request.getParameter("room");
 
 <body>
 
-<h1 class="title">Room ID: <%=room%></h1>
+<h1 class="title">Room ID : <%=room%></h1>
 
-<div class="board">
+<p>Share this Room ID with your friend</p>
 
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
+<br>
 
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
+<a href="multiplayer.jsp?room=<%=room%>">
 
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
+<button class="start-btn">Start Game</button>
 
-</div>
-
-<script src="js/game.js"></script>
+</a>
 
 </body>
 

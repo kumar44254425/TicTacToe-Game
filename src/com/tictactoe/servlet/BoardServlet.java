@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.*;
+
 import com.tictactoe.util.DBConnection;
 
 public class BoardServlet extends HttpServlet {
@@ -20,7 +21,7 @@ public class BoardServlet extends HttpServlet {
             Connection con = DBConnection.getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT board, turn FROM rooms WHERE room_id=?");
+                    "SELECT player1,player2,board,turn FROM rooms WHERE room_id=?");
 
             ps.setString(1, room);
 
@@ -30,13 +31,23 @@ public class BoardServlet extends HttpServlet {
 
                 String board = rs.getString("board");
                 String turn = rs.getString("turn");
+                String player1 = rs.getString("player1");
+                String player2 = rs.getString("player2");
 
-                res.getWriter().write(
-                        "{\"board\":\"" + board + "\",\"turn\":\"" + turn + "\"}");
+                String json = "{\"board\":\"" + board + "\",\"turn\":\"" + turn + "\",\"player1\":\"" + player1
+                        + "\",\"player2\":\"" + player2 + "\"}";
+
+                res.getWriter().write(json);
+
+            } else {
+
+                res.getWriter().write("{\"board\":\"-,-,-,-,-,-,-,-,-\",\"turn\":\"X\"}");
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }
