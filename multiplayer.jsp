@@ -3,8 +3,17 @@
 <%
 String roomId = request.getParameter("room");
 String player = (String)session.getAttribute("username");
-%>
 
+if(player == null){
+    response.sendRedirect("login.jsp");
+    return;
+}
+if(roomId == null){
+    response.sendRedirect("room.jsp");
+    return;
+}
+
+%>
 <html>
 
 <head>

@@ -6,9 +6,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 import org.json.JSONObject;
 
@@ -17,14 +16,14 @@ import com.tictactoe.util.DBConnection;
 @ServerEndpoint("/game")
 public class GameSocket {
 
-    static Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
+    /* store sessions by room */
+
+    static Map<String, Set<Session>> rooms = new HashMap<>();
 
     @OnOpen
     public void onOpen(Session session) {
 
         System.out.println("Player connected");
-
-        sessions.add(session);
 
     }
 
@@ -33,7 +32,9 @@ public class GameSocket {
 
         System.out.println("Player disconnected");
 
-        sessions.remove(session);
+        /* remove from room */
+
+        rooms.values().forEach(set -> set.remove(session));
 
     }
 
@@ -44,11 +45,15 @@ public class GameSocket {
 
             JSONObject obj = new JSONObject(message);
 
-            /* ---------------- JOIN REQUEST ---------------- */
+            /* ---------- JOIN ROOM ---------- */
 
             if (obj.has("type") && obj.getString("type").equals("join")) {
 
                 String room = obj.getString("room");
+
+                /* add session to room */
+
+                rooms.computeIfAbsent(room, k -> new HashSet<>()).add(session);
 
                 Connection con = DBConnection.getConnection();
 
@@ -76,7 +81,7 @@ public class GameSocket {
 
             }
 
-            /* ---------------- MOVE REQUEST ---------------- */
+            /* ---------- MOVE ---------- */
 
             String room = obj.getString("room");
             String player = obj.getString("player");
@@ -98,33 +103,22 @@ public class GameSocket {
                 String board = rs.getString("board");
                 String turn = rs.getString("turn");
 
-                /* determine symbol */
-
                 String symbol;
 
-                if (player.equals(player1)) {
+                if (player.equals(player1))
                     symbol = "X";
-                } else {
+                else
                     symbol = "O";
-                }
-
-                /* check turn */
 
                 if (!turn.equals(symbol))
                     return;
 
                 String[] cells = board.split(",");
 
-                /* check cell empty */
-
                 if (!cells[index].equals("-"))
                     return;
 
-                /* update board */
-
                 cells[index] = symbol;
-
-                /* switch turn */
 
                 if (turn.equals("X"))
                     turn = "O";
@@ -132,8 +126,6 @@ public class GameSocket {
                     turn = "X";
 
                 String newBoard = String.join(",", cells);
-
-                /* update database */
 
                 PreparedStatement update = con.prepareStatement(
                         "UPDATE rooms SET board=?,turn=? WHERE room_id=?");
@@ -144,8 +136,6 @@ public class GameSocket {
 
                 update.executeUpdate();
 
-                /* broadcast board */
-
                 JSONObject response = new JSONObject();
 
                 response.put("board", newBoard);
@@ -153,9 +143,17 @@ public class GameSocket {
                 response.put("player1", player1);
                 response.put("player2", player2);
 
-                for (Session s : sessions) {
+                /* send update only to players in same room */
 
-                    s.getBasicRemote().sendText(response.toString());
+                Set<Session> roomSessions = rooms.get(room);
+
+                if (roomSessions != null) {
+
+                    for (Session s : roomSessions) {
+
+                        s.getBasicRemote().sendText(response.toString());
+
+                    }
 
                 }
 
