@@ -43,6 +43,15 @@ String player = (String)session.getAttribute("username");
 <h2 id="winner"></h2>
 
 </div>
+<h2 id="winner"></h2>
+
+<div class="game-buttons">
+
+<button onclick="goBack()"> Go Back</button>
+
+<button onclick="playAgain()"> Play Again</button>
+
+</div>
 
 <script>
 

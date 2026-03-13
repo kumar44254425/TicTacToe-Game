@@ -165,3 +165,14 @@ return;
 }
 
 }
+function goBack(){
+
+window.location.href="index.jsp";   // change if your home page is different
+
+}
+
+function playAgain(){
+
+location.reload();  // reload same room
+
+}
